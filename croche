@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Minha Arte em Croché</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Paleta de Cores Acolhedora para Croché */
+        :root { 
+            --fundo: #FAF7F2; 
+            --texto: #4A4036; 
+            --destaque: #D27D71; /* Tom terracota/rosa velho */
+            --destaque-hover: #b8655a;
+            --cartao: #FFFFFF;
+            --linha: #E8E1D7;
+            --fonte-titulos: 'Lora', serif;
+            --fonte-textos: 'Nunito', sans-serif;
+            --sombra: 0 10px 30px rgba(74, 64, 54, 0.08);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--fonte-textos); background: var(--fundo); color: var(--texto); line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        a { text-decoration: none; }
+        
+        /* Cabeçalho e Hero */
+        .header { text-align: center; padding: 60px 0 40px; }
+        .logo { font-family: var(--fonte-titulos); font-size: 38px; font-weight: 700; color: var(--destaque); margin-bottom: 10px; }
+        .subtitulo { font-size: 18px; color: var(--texto); opacity: 0.8; max-width: 600px; margin: 0 auto; }
+        
+        /* Grelha de Produtos */
+        .produtos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 40px 0 80px; }
+        
+        /* Cartão de Produto */
+        .cartao { background: var(--cartao); border-radius: 20px; overflow: hidden; box-shadow: var(--sombra); transition: transform 0.3s ease; border: 1px solid var(--linha); }
+        .cartao:hover { transform: translateY(-8px); }
+        
+        /* Imagem do Produto (Quadrado cinza temporário) */
+        .imagem-produto { width: 100%; height: 260px; background-color: #E8E1D7; object-fit: cover; display: flex; align-items: center; justify-content: center; color: #a3998f; }
+        
+        .info-produto { padding: 24px; text-align: center; }
+        .titulo-produto { font-family: var(--fonte-titulos); font-size: 22px; margin-bottom: 8px; color: var(--texto); }
+        .descricao-produto { font-size: 15px; opacity: 0.7; margin-bottom: 16px; height: 44px; }
+        .preco { font-size: 24px; font-weight: 800; color: var(--destaque); margin-bottom: 20px; }
+        
+        /* Botão WhatsApp */
+        .btn-wpp { display: inline-block; width: 100%; background: #25D366; color: white; padding: 14px 20px; border-radius: 12px; font-size: 16px; font-weight: 700; border: none; cursor: pointer; transition: background 0.2s; }
+        .btn-wpp:hover { background: #20BA56; }
+        .btn-wpp i { margin-right: 8px; font-size: 18px; }
+
+        /* Rodapé */
+        .footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--linha); margin-top: 40px; font-size: 14px; opacity: 0.6; }
+    </style>
+</head>
+<body>
+
+    <header class="header container">
+        <div class="logo"><i class="fa-solid fa-yarn"></i> Ponto & Arte</div>
+        <p class="subtitulo">Peças de croché feitas à mão com muito amor. Descobre o stock disponível e encomenda a tua favorita diretamente por WhatsApp.</p>
+    </header>
+
+    <main class="container">
+        <div class="produtos-grid">
+            
+            <!-- PRODUTO 1 -->
+            <article class="cartao">
+                <!-- Para pores a tua foto substitui o div abaixo por: <img src="foto1.jpg" class="imagem-produto"> -->
+                <div class="imagem-produto"><i class="fa-solid fa-camera fa-2x"></i></div>
+                <div class="info-produto">
+                    <h3 class="titulo-produto">Peluche Ursinho</h3>
+                    <p class="descricao-produto">Feito com fio 100% algodão, super macio e seguro para bebés.</p>
+                    <div class="preco">15,00 €</div>
+                    <!-- O botão chama a função de JS com o nome e preço do produto -->
+                    <button class="btn-wpp" onclick="comprar('Peluche Ursinho', '15,00 €')">
+                        <i class="fa-brands fa-whatsapp"></i> Comprar
+                    </button>
+                </div>
+            </article>
+
+            <!-- PRODUTO 2 -->
+            <article class="cartao">
+                <div class="imagem-produto"><i class="fa-solid fa-camera fa-2x"></i></div>
+                <div class="info-produto">
+                    <h3 class="titulo-produto">Manta de Sofá</h3>
+                    <p class="descricao-produto">Manta quentinha em tons terra. Medidas: 120x150cm.</p>
+                    <div class="preco">45,00 €</div>
+                    <button class="btn-wpp" onclick="comprar('Manta de Sofá', '45,00 €')">
+                        <i class="fa-brands fa-whatsapp"></i> Comprar
+                    </button>
+                </div>
+            </article>
+
+            <!-- PRODUTO 3 -->
+            <article class="cartao">
+                <div class="imagem-produto"><i class="fa-solid fa-camera fa-2x"></i></div>
+                <div class="info-produto">
+                    <h3 class="titulo-produto">Top de Verão</h3>
+                    <p class="descricao-produto">Top tamanho M em padrão floral. Ideal para a praia.</p>
+                    <div class="preco">25,00 €</div>
+                    <button class="btn-wpp" onclick="comprar('Top de Verão', '25,00 €')">
+                        <i class="fa-brands fa-whatsapp"></i> Comprar
+                    </button>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer class="footer container">
+        <p>© 2026 Ponto & Arte. Envio para todo o país. Pagamentos por MBWay ou Transferência.</p>
+    </footer>
+
+    <script>
+        // ==========================================
+        // ⚠️ PÕE AQUI O TEU NÚMERO DE WHATSAPP
+        // ==========================================
+        // Coloca o indicativo 351 seguido do teu número, sem espaços!
+        const MEU_NUMERO = "351931860793"; 
+
+        // Esta função pega no nome e no preço e cria a mensagem automática
+        function comprar(nomeProduto, precoProduto) {
+            // A mensagem que tu vais receber no telemóvel:
+            let mensagem = `Olá! Gostaria de encomendar a peça: *${nomeProduto}* (Valor: ${precoProduto}). Ainda tem em stock?`;
+            
+            // Transforma o texto para um formato de link de internet
+            let url = `https://wa.me/${MEU_NUMERO}?text=${encodeURIComponent(mensagem)}`;
+            
+            // Abre o WhatsApp num separador novo
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
