@@ -20,24 +20,33 @@
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; } /* Faz a página deslizar suavemente para as categorias */
         body { font-family: var(--fonte-texto); background: var(--fundo); color: var(--texto); line-height: 1.6; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
-        /* Navegação e Carrinho */
+        /* Navegação Principal e Carrinho */
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; background: var(--branco); border-bottom: 1px solid var(--linha); position: sticky; top: 0; z-index: 100; }
         .logo { font-family: var(--fonte-titulo); font-size: 26px; color: var(--destaque); text-decoration: none; }
         .btn-carrinho { background: none; border: none; font-size: 24px; color: var(--texto); cursor: pointer; position: relative; }
         .badge-carrinho { position: absolute; top: -8px; right: -10px; background: var(--destaque); color: var(--branco); font-size: 12px; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
+        /* Menu das Categorias */
+        .menu-categorias { background: var(--fundo-alt); padding: 12px 24px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; border-bottom: 1px solid var(--linha); }
+        .menu-categorias a { color: var(--texto); text-decoration: none; font-weight: 600; font-size: 15px; padding: 6px 12px; border-radius: 20px; transition: background 0.2s, color 0.2s; }
+        .menu-categorias a:hover { background: var(--texto); color: var(--branco); }
+
         /* Banner Principal */
-        .hero { text-align: center; padding: 80px 24px; background: var(--fundo-alt); border-bottom: 1px solid var(--linha); }
+        .hero { text-align: center; padding: 60px 24px; background: var(--fundo); border-bottom: 1px solid var(--linha); }
         .hero h1 { font-family: var(--fonte-titulo); font-size: 46px; margin-bottom: 16px; color: var(--texto); }
         .hero p { font-size: 18px; opacity: 0.8; max-width: 600px; margin: 0 auto; }
 
-        /* Grelha de Produtos */
-        .seccao-produtos { padding: 60px 0; }
+        /* Secções e Grelha de Produtos */
+        .seccao-produtos { padding: 40px 0 60px; }
+        .categoria-bloco { margin-bottom: 60px; scroll-margin-top: 130px; /* Evita que o menu esconda o título ao clicar */ }
+        .titulo-categoria { font-family: var(--fonte-titulo); font-size: 32px; color: var(--destaque); margin-bottom: 24px; padding-bottom: 10px; border-bottom: 2px solid var(--linha); }
         .grid-produtos { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
         
+        /* Estilo do Cartão */
         .cartao { background: var(--branco); border-radius: 16px; overflow: hidden; border: 1px solid var(--linha); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
         .cartao:hover { transform: translateY(-5px); box-shadow: var(--sombra); }
         .cartao img { width: 100%; height: 280px; object-fit: cover; border-bottom: 1px solid var(--linha); }
@@ -57,24 +66,33 @@
         .modal-header h2 { font-family: var(--fonte-titulo); font-size: 24px; }
         .fechar-modal { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--texto); }
         
-        .lista-carrinho { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
+        .lista-carrinho { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; padding-right: 5px; }
         .item-carrinho { display: flex; justify-content: space-between; align-items: center; background: var(--fundo); padding: 12px; border-radius: 8px; }
         .item-info h4 { font-size: 15px; margin-bottom: 4px; }
         .item-info span { font-weight: 700; color: var(--destaque); }
         .btn-remover { color: #d9534f; background: none; border: none; cursor: pointer; font-size: 18px; padding: 5px; }
 
         .modal-footer { border-top: 1px solid var(--linha); padding-top: 20px; margin-top: 20px; }
+        
+        /* Opções de Entrega */
+        .opcoes-entrega { margin-bottom: 20px; background: var(--fundo); padding: 14px; border-radius: 8px; border: 1px solid var(--linha); }
+        .opcoes-entrega h4 { font-size: 14px; margin-bottom: 10px; color: var(--texto); }
+        .opcoes-entrega label { display: block; font-size: 14px; margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .opcoes-entrega input { accent-color: var(--destaque); transform: scale(1.1); }
+
         .total-linha { display: flex; justify-content: space-between; font-size: 20px; font-weight: 700; margin-bottom: 16px; }
         .btn-enviar-wpp { width: 100%; background: #25D366; color: white; padding: 16px; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: background 0.2s; }
         .btn-enviar-wpp:hover { background: #20BA56; }
         .btn-enviar-wpp:disabled { background: #a5d6b4; cursor: not-allowed; }
 
         .vazio-msg { text-align: center; color: var(--texto); opacity: 0.6; margin-top: 40px; }
+        
+        /* Rodapé */
+        .footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--linha); font-size: 14px; opacity: 0.6; background: var(--branco); }
     </style>
 </head>
 <body>
 
-    <!-- Navegação -->
     <nav class="navbar">
         <a href="#" class="logo"><i class="fa-solid fa-yarn"></i> Ponto & Arte</a>
         <button class="btn-carrinho" onclick="abrirCarrinho()">
@@ -83,18 +101,50 @@
         </button>
     </nav>
 
-    <!-- Banner -->
+    <!-- Menu Atalhos para as Divisões -->
+    <div class="menu-categorias">
+        <a href="#mais-vendidos">🌟 Mais Vendidos</a>
+        <a href="#criancas">🧸 Para Crianças</a>
+        <a href="#decoracao">🏡 Decoração</a>
+        <a href="#festivas">🎄 Datas Festivas</a>
+    </div>
+
     <header class="hero">
         <h1>Feito à mão, com o coração.</h1>
         <p>Aconchego em cada ponto. Explora a coleção de peças exclusivas em croché e adiciona as tuas favoritas ao cesto.</p>
     </header>
 
-    <!-- Produtos -->
     <main class="container seccao-produtos">
-        <div class="grid-produtos" id="catalogo">
-            <!-- Os produtos são gerados aqui automaticamente pelo JavaScript -->
+        
+        <!-- Secção 1: Mais Vendidos -->
+        <div id="mais-vendidos" class="categoria-bloco">
+            <h2 class="titulo-categoria">🌟 Mais Vendidos</h2>
+            <div class="grid-produtos" id="grid-mais-vendidos"></div>
         </div>
+
+        <!-- Secção 2: Crianças -->
+        <div id="criancas" class="categoria-bloco">
+            <h2 class="titulo-categoria">🧸 Para Crianças</h2>
+            <div class="grid-produtos" id="grid-criancas"></div>
+        </div>
+
+        <!-- Secção 3: Decoração -->
+        <div id="decoracao" class="categoria-bloco">
+            <h2 class="titulo-categoria">🏡 Decoração</h2>
+            <div class="grid-produtos" id="grid-decoracao"></div>
+        </div>
+
+        <!-- Secção 4: Datas Festivas -->
+        <div id="festivas" class="categoria-bloco">
+            <h2 class="titulo-categoria">🎄 Datas Festivas</h2>
+            <div class="grid-produtos" id="grid-festivas"></div>
+        </div>
+
     </main>
+
+    <footer class="footer">
+        <p>© 2026 Ponto & Arte. Envio para todo o país. Pagamentos por MBWay ou Transferência.</p>
+    </footer>
 
     <!-- Modal do Carrinho -->
     <div class="modal-overlay" id="fundo-modal">
@@ -105,11 +155,22 @@
             </div>
             
             <div class="lista-carrinho" id="itens-carrinho">
-                <!-- Itens do carrinho aparecem aqui -->
                 <p class="vazio-msg">O cesto está vazio.</p>
             </div>
 
             <div class="modal-footer">
+                <div class="opcoes-entrega">
+                    <h4>Método de Entrega:</h4>
+                    <label>
+                        <input type="radio" name="entrega" value="Entrega em mão (Odivelas e arredores)" checked> 
+                        Entrega em mão (Odivelas e arredores) - Grátis
+                    </label>
+                    <label>
+                        <input type="radio" name="entrega" value="Envio por CTT (Portes a calcular)"> 
+                        Envio por CTT - Portes a calcular
+                    </label>
+                </div>
+
                 <div class="total-linha">
                     <span>Total:</span>
                     <span id="valor-total">0.00 €</span>
@@ -123,47 +184,57 @@
 
     <script>
         // ==========================================
-        // 1. CONFIGURAÇÕES PRINCIPAIS
+        // ⚠️ COLOCA AQUI O TEU NÚMERO
         // ==========================================
-        const MEU_NUMERO = "351931860793"; // O teu número com o 351
+        const MEU_NUMERO = "351931860793"; 
 
-        // 2. A TUA LISTA DE PRODUTOS
-        // Para adicionares mais produtos, basta copiares uma destas linhas e alterares os dados!
+        // ==========================================
+        // LISTA DE PRODUTOS COM AS NOVAS CATEGORIAS
+        // ==========================================
         const produtos = [
-            { id: 1, nome: "Peluche Ursinho", preco: 22.00, desc: "Amigurumi feito com fio 100% algodão hipoalergénico. Muito macio e seguro para bebés.", foto: "https://images.unsplash.com/photo-1558244402-28c11020286e?auto=format&fit=crop&w=500&q=80" },
-            { id: 2, nome: "Manta de Sofá Terra", preco: 65.00, desc: "Manta quentinha feita à mão. Padrão geométrico moderno. Dimensões: 120x150cm.", foto: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=500&q=80" },
-            { id: 3, nome: "Cesto Organizador", preco: 18.50, desc: "Cesto em fio de malha premium. Ideal para guardar maquilhagem ou chaves na entrada.", foto: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=500&q=80" },
-            { id: 4, nome: "Top de Verão Boho", preco: 35.00, desc: "Top em padrão floral fresco e leve para a praia. Tamanho único ajustável (M/L).", foto: "https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?auto=format&fit=crop&w=500&q=80" }
+            // Categoria: Mais Vendidos
+            { id: 1, nome: "Manta de Sofá Terra", preco: 65.00, categoria: "mais-vendidos", desc: "Manta quentinha feita à mão. Padrão geométrico moderno. Dimensões: 120x150cm.", foto: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=500&q=80" },
+            { id: 2, nome: "Top de Verão Boho", preco: 35.00, categoria: "mais-vendidos", desc: "Top em padrão floral fresco e leve para a praia. Tamanho único ajustável.", foto: "https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?auto=format&fit=crop&w=500&q=80" },
+            
+            // Categoria: Crianças
+            { id: 3, nome: "Peluche Ursinho", preco: 22.00, categoria: "criancas", desc: "Amigurumi feito com fio 100% algodão hipoalergénico. Muito macio e seguro para bebés.", foto: "https://images.unsplash.com/photo-1558244402-28c11020286e?auto=format&fit=crop&w=500&q=80" },
+            { id: 4, nome: "Polvo do Sono", preco: 18.00, categoria: "criancas", desc: "Os tentáculos simulam o cordão umbilical, acalmando recém-nascidos. Feito à mão.", foto: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=500&q=80" },
+
+            // Categoria: Decoração
+            { id: 5, nome: "Cesto Organizador", preco: 18.50, categoria: "decoracao", desc: "Cesto em fio de malha premium. Ideal para guardar maquilhagem ou chaves na entrada.", foto: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=500&q=80" },
+            { id: 6, nome: "Almofada Nó Celta", preco: 28.00, categoria: "decoracao", desc: "Almofada moderna em formato de nó infinito. Dá um toque especial a qualquer sofá.", foto: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=500&q=80" },
+
+            // Categoria: Datas Festivas
+            { id: 7, nome: "Conjunto Bolas de Natal", preco: 25.00, categoria: "festivas", desc: "Set de 4 bolas de Natal revestidas a croché com fios dourados. Perfeitas para a árvore.", foto: "https://images.unsplash.com/photo-1543258103-a62bdc069c71?auto=format&fit=crop&w=500&q=80" },
+            { id: 8, nome: "Coelhinho da Páscoa", preco: 15.00, categoria: "festivas", desc: "Pequeno coelho decorativo com uma cestinha agarrada para colocares amêndoas.", foto: "https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?auto=format&fit=crop&w=500&q=80" }
         ];
 
         let carrinho = [];
 
-        // ==========================================
-        // 3. DESENHAR OS PRODUTOS NA TELA
-        // ==========================================
-        const catalogoDiv = document.getElementById('catalogo');
-        
+        // Distribuir os produtos pelas secções corretas
         produtos.forEach(produto => {
-            catalogoDiv.innerHTML += `
-                <article class="cartao">
-                    <img src="${produto.foto}" alt="${produto.nome}">
-                    <div class="info-produto">
-                        <h3>${produto.nome}</h3>
-                        <p>${produto.desc}</p>
-                        <div class="preco-rodape">
-                            <span class="preco">${produto.preco.toFixed(2)} €</span>
-                            <button class="btn-adicionar" onclick="adicionarAoCarrinho(${produto.id})">
-                                + Cesto
-                            </button>
+            const containerGrid = document.getElementById(`grid-${produto.categoria}`);
+            
+            if(containerGrid) {
+                containerGrid.innerHTML += `
+                    <article class="cartao">
+                        <img src="${produto.foto}" alt="${produto.nome}">
+                        <div class="info-produto">
+                            <h3>${produto.nome}</h3>
+                            <p>${produto.desc}</p>
+                            <div class="preco-rodape">
+                                <span class="preco">${produto.preco.toFixed(2)} €</span>
+                                <button class="btn-adicionar" onclick="adicionarAoCarrinho(${produto.id})">
+                                    + Cesto
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </article>
-            `;
+                    </article>
+                `;
+            }
         });
 
-        // ==========================================
-        // 4. LÓGICA DO CARRINHO DE COMPRAS
-        // ==========================================
+        // Lógica do Carrinho
         function adicionarAoCarrinho(idProduto) {
             const produto = produtos.find(p => p.id === idProduto);
             carrinho.push(produto);
@@ -211,11 +282,10 @@
             btnCheckout.disabled = false;
         }
 
-        // ==========================================
-        // 5. ENVIAR PARA O WHATSAPP
-        // ==========================================
         function enviarEncomenda() {
             if (carrinho.length === 0) return;
+
+            const metodoEntrega = document.querySelector('input[name="entrega"]:checked').value;
 
             let texto = "Olá Ponto & Arte! 🧶 Gostaria de fazer a seguinte encomenda:\n\n";
             let total = 0;
@@ -225,23 +295,22 @@
                 total += item.preco;
             });
 
-            texto += `\n*Valor Total: ${total.toFixed(2)}€*\n\nComo podemos proceder para o pagamento e envio?`;
+            texto += `\n*Valor Produtos:* ${total.toFixed(2)}€\n`;
+            texto += `*Método de Entrega:* ${metodoEntrega}\n\n`;
+            texto += `Como podemos proceder para o pagamento?`;
 
             const url = `https://wa.me/${MEU_NUMERO}?text=${encodeURIComponent(texto)}`;
             window.open(url, '_blank');
             
-            // Esvazia o carrinho depois de enviar
             carrinho = [];
             atualizarCarrinho();
             fecharCarrinho();
         }
 
-        // Controlo da janela do carrinho
         const modal = document.getElementById('fundo-modal');
         function abrirCarrinho() { modal.style.display = 'flex'; }
         function fecharCarrinho() { modal.style.display = 'none'; }
         
-        // Fechar ao clicar fora da janela branca
         window.onclick = function(event) {
             if (event.target == modal) fecharCarrinho();
         }
